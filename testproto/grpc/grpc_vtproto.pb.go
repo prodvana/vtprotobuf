@@ -57,6 +57,22 @@ func (m *LocalTestMessageResponse) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *LocalTestMessageRequest) StableEqualVT(that *LocalTestMessageRequest) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *LocalTestMessageRequest) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*LocalTestMessageRequest)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *LocalTestMessageRequest) EqualVT(that *LocalTestMessageRequest) bool {
 	if this == that {
 		return true
@@ -72,6 +88,22 @@ func (this *LocalTestMessageRequest) EqualMessageVT(thatMsg proto.Message) bool 
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *LocalTestMessageResponse) StableEqualVT(that *LocalTestMessageResponse) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *LocalTestMessageResponse) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*LocalTestMessageResponse)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *LocalTestMessageResponse) EqualVT(that *LocalTestMessageResponse) bool {
 	if this == that {

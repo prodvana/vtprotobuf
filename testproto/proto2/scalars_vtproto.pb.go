@@ -562,6 +562,46 @@ func (m *EnumMessage) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *DoubleMessage) StableEqualVT(that *DoubleMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *DoubleMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*DoubleMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *DoubleMessage) EqualVT(that *DoubleMessage) bool {
 	if this == that {
 		return true
@@ -601,6 +641,46 @@ func (this *DoubleMessage) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *FloatMessage) StableEqualVT(that *FloatMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *FloatMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*FloatMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *FloatMessage) EqualVT(that *FloatMessage) bool {
 	if this == that {
@@ -642,6 +722,46 @@ func (this *FloatMessage) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *Int32Message) StableEqualVT(that *Int32Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Int32Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Int32Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Int32Message) EqualVT(that *Int32Message) bool {
 	if this == that {
 		return true
@@ -681,6 +801,46 @@ func (this *Int32Message) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Int64Message) StableEqualVT(that *Int64Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Int64Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Int64Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Int64Message) EqualVT(that *Int64Message) bool {
 	if this == that {
@@ -722,6 +882,46 @@ func (this *Int64Message) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *Uint32Message) StableEqualVT(that *Uint32Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Uint32Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Uint32Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Uint32Message) EqualVT(that *Uint32Message) bool {
 	if this == that {
 		return true
@@ -761,6 +961,46 @@ func (this *Uint32Message) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Uint64Message) StableEqualVT(that *Uint64Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Uint64Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Uint64Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Uint64Message) EqualVT(that *Uint64Message) bool {
 	if this == that {
@@ -802,6 +1042,46 @@ func (this *Uint64Message) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *Sint32Message) StableEqualVT(that *Sint32Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Sint32Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Sint32Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Sint32Message) EqualVT(that *Sint32Message) bool {
 	if this == that {
 		return true
@@ -841,6 +1121,46 @@ func (this *Sint32Message) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Sint64Message) StableEqualVT(that *Sint64Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Sint64Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Sint64Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Sint64Message) EqualVT(that *Sint64Message) bool {
 	if this == that {
@@ -882,6 +1202,46 @@ func (this *Sint64Message) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *Fixed32Message) StableEqualVT(that *Fixed32Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Fixed32Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Fixed32Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Fixed32Message) EqualVT(that *Fixed32Message) bool {
 	if this == that {
 		return true
@@ -921,6 +1281,46 @@ func (this *Fixed32Message) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Fixed64Message) StableEqualVT(that *Fixed64Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Fixed64Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Fixed64Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Fixed64Message) EqualVT(that *Fixed64Message) bool {
 	if this == that {
@@ -962,6 +1362,46 @@ func (this *Fixed64Message) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *Sfixed32Message) StableEqualVT(that *Sfixed32Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Sfixed32Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Sfixed32Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Sfixed32Message) EqualVT(that *Sfixed32Message) bool {
 	if this == that {
 		return true
@@ -1001,6 +1441,46 @@ func (this *Sfixed32Message) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Sfixed64Message) StableEqualVT(that *Sfixed64Message) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Sfixed64Message) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Sfixed64Message)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Sfixed64Message) EqualVT(that *Sfixed64Message) bool {
 	if this == that {
@@ -1042,6 +1522,46 @@ func (this *Sfixed64Message) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *BoolMessage) StableEqualVT(that *BoolMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *BoolMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*BoolMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *BoolMessage) EqualVT(that *BoolMessage) bool {
 	if this == that {
 		return true
@@ -1082,6 +1602,37 @@ func (this *BoolMessage) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *StringMessage) StableEqualVT(that *StringMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *StringMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*StringMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *StringMessage) EqualVT(that *StringMessage) bool {
 	if this == that {
 		return true
@@ -1113,6 +1664,37 @@ func (this *StringMessage) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *BytesMessage) StableEqualVT(that *BytesMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && q == nil) || string(p) != string(q) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && q == nil) || string(p) != string(q) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if string(vx) != string(vy) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *BytesMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*BytesMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *BytesMessage) EqualVT(that *BytesMessage) bool {
 	if this == that {
 		return true
@@ -1143,6 +1725,46 @@ func (this *BytesMessage) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *EnumMessage) StableEqualVT(that *EnumMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if p, q := this.RequiredField, that.RequiredField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if p, q := this.OptionalField, that.OptionalField; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.RepeatedField) != len(that.RepeatedField) {
+		return false
+	}
+	for i, vx := range this.RepeatedField {
+		vy := that.RepeatedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedField) != len(that.PackedField) {
+		return false
+	}
+	for i, vx := range this.PackedField {
+		vy := that.PackedField[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *EnumMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*EnumMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *EnumMessage) EqualVT(that *EnumMessage) bool {
 	if this == that {

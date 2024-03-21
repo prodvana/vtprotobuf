@@ -4,12 +4,15 @@ package equal
 
 import (
 	"fmt"
+	"log"
 	"sort"
 
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
 	"github.com/planetscale/vtprotobuf/generator"
+	"github.com/planetscale/vtprotobuf/vtproto"
+	"google.golang.org/protobuf/proto"
 )
 
 func init() {
@@ -34,7 +37,8 @@ func (p *equal) Name() string { return "equal" }
 func (p *equal) GenerateFile(file *protogen.File) bool {
 	proto3 := file.Desc.Syntax() == protoreflect.Proto3
 	for _, message := range file.Messages {
-		p.message(proto3, message)
+		p.message(proto3, message, true)
+		p.message(proto3, message, false)
 	}
 	return p.once
 }
@@ -42,19 +46,31 @@ func (p *equal) GenerateFile(file *protogen.File) bool {
 const equalName = "EqualVT"
 const equalMessageName = "EqualMessageVT"
 
-func (p *equal) message(proto3 bool, message *protogen.Message) {
+const stableEqualName = "StableEqualVT"
+const stableEqualMessageName = "StableEqualMessageVT"
+
+func methodNames(stable bool) (string, string) {
+	if stable {
+		return stableEqualName, stableEqualMessageName
+	}
+	return equalName, equalMessageName
+}
+
+func (p *equal) message(proto3 bool, message *protogen.Message, stable bool) {
 	for _, nested := range message.Messages {
-		p.message(proto3, nested)
+		p.message(proto3, nested, stable)
 	}
 
 	if message.Desc.IsMapEntry() {
 		return
 	}
 
+	methodName, messageMethodName := methodNames(stable)
+
 	p.once = true
 
 	ccTypeName := message.GoIdent.GoName
-	p.P(`func (this *`, ccTypeName, `) `, equalName, `(that *`, ccTypeName, `) bool {`)
+	p.P(`func (this *`, ccTypeName, `) `, methodName, `(that *`, ccTypeName, `) bool {`)
 
 	p.P(`if this == that {`)
 	p.P(`	return true`)
@@ -91,13 +107,13 @@ func (p *equal) message(proto3 bool, message *protogen.Message) {
 				p.P(`switch c := this.`, fieldname, `.(type) {`)
 				for _, f := range field.Oneof.Fields {
 					p.P(`case *`, f.GoIdent, `:`)
-					p.P(`if !(*`, p.WellKnownFieldMap(f), `)(c).`, equalName, `(that.`, fieldname, `) {`)
+					p.P(`if !(*`, p.WellKnownFieldMap(f), `)(c).`, methodName, `(that.`, fieldname, `) {`)
 					p.P(`return false`)
 					p.P(`}`)
 				}
 				p.P(`}`)
 			} else {
-				p.P(`if !this.`, fieldname, `.(interface{ `, equalName, `(`, ccInterfaceName, `) bool }).`, equalName, `(that.`, fieldname, `) {`)
+				p.P(`if !this.`, fieldname, `.(interface{ `, methodName, `(`, ccInterfaceName, `) bool }).`, methodName, `(that.`, fieldname, `) {`)
 				p.P(`return false`)
 				p.P(`}`)
 			}
@@ -109,7 +125,7 @@ func (p *equal) message(proto3 bool, message *protogen.Message) {
 		oneof := field.Oneof != nil && !field.Oneof.Desc.IsSynthetic()
 		nullable := field.Message != nil || (field.Oneof != nil && field.Oneof.Desc.IsSynthetic()) || (!proto3 && !oneof)
 		if !oneof {
-			p.field(field, nullable)
+			p.field(field, nullable, stable)
 		}
 	}
 
@@ -122,12 +138,12 @@ func (p *equal) message(proto3 bool, message *protogen.Message) {
 	p.P()
 
 	if !p.Wrapper() {
-		p.P(`func (this *`, ccTypeName, `) `, equalMessageName, `(thatMsg `, protoPkg.Ident("Message"), `) bool {`)
+		p.P(`func (this *`, ccTypeName, `) `, messageMethodName, `(thatMsg `, protoPkg.Ident("Message"), `) bool {`)
 		p.P(`that, ok := thatMsg.(*`, ccTypeName, `)`)
 		p.P(`if !ok {`)
 		p.P(`return false`)
 		p.P(`}`)
-		p.P(`return this.`, equalName, `(that)`)
+		p.P(`return this.`, methodName, `(that)`)
 		p.P(`}`)
 	}
 
@@ -136,19 +152,21 @@ func (p *equal) message(proto3 bool, message *protogen.Message) {
 		if !oneof {
 			continue
 		}
-		p.oneof(field)
+		p.oneof(field, stable)
 	}
 }
 
-func (p *equal) oneof(field *protogen.Field) {
+func (p *equal) oneof(field *protogen.Field, stable bool) {
 	ccTypeName := field.GoIdent.GoName
 	ccInterfaceName := fmt.Sprintf("is%s", field.Oneof.GoIdent.GoName)
 	fieldname := field.GoName
 
+	methodName, _ := methodNames(stable)
+
 	if p.IsWellKnownType(field.Parent) {
-		p.P(`func (this *`, ccTypeName, `) `, equalName, `(thatIface any) bool {`)
+		p.P(`func (this *`, ccTypeName, `) `, methodName, `(thatIface any) bool {`)
 	} else {
-		p.P(`func (this *`, ccTypeName, `) `, equalName, `(thatIface `, ccInterfaceName, `) bool {`)
+		p.P(`func (this *`, ccTypeName, `) `, methodName, `(thatIface `, ccInterfaceName, `) bool {`)
 	}
 	p.P(`that, ok := thatIface.(*`, ccTypeName, `)`)
 	p.P(`if !ok {`)
@@ -178,7 +196,7 @@ func (p *equal) oneof(field *protogen.Field) {
 	case kind == protoreflect.BytesKind:
 		p.compareBytes(lhs, rhs, false)
 	case kind == protoreflect.MessageKind || kind == protoreflect.GroupKind:
-		p.compareCall(lhs, rhs, field.Message, false)
+		p.compareCall(lhs, rhs, field.Message, false, stable)
 	default:
 		panic("not implemented")
 	}
@@ -187,8 +205,17 @@ func (p *equal) oneof(field *protogen.Field) {
 	p.P()
 }
 
-func (p *equal) field(field *protogen.Field, nullable bool) {
+func (p *equal) field(field *protogen.Field, nullable bool, stable bool) {
 	fieldname := field.GoName
+
+	if stable {
+		excludeField := proto.GetExtension(field.Desc.Options(), vtproto.E_UnstableForEqual)
+		exclude, _ := excludeField.(bool)
+		if exclude {
+			log.Printf("Excluding field: %s from Equal", field.Desc.FullName())
+			return
+		}
+	}
 
 	repeated := field.Desc.Cardinality() == protoreflect.Repeated
 	lhs := fmt.Sprintf("this.%s", fieldname)
@@ -222,7 +249,7 @@ func (p *equal) field(field *protogen.Field, nullable bool) {
 		p.compareBytes(lhs, rhs, nullable)
 
 	case kind == protoreflect.MessageKind || kind == protoreflect.GroupKind:
-		p.compareCall(lhs, rhs, field.Message, nullable)
+		p.compareCall(lhs, rhs, field.Message, nullable, stable)
 
 	default:
 		panic("not implemented")
@@ -255,7 +282,9 @@ func (p *equal) compareBytes(lhs, rhs string, nullable bool) {
 	p.P(`}`)
 }
 
-func (p *equal) compareCall(lhs, rhs string, msg *protogen.Message, nullable bool) {
+func (p *equal) compareCall(lhs, rhs string, msg *protogen.Message, nullable bool, stable bool) {
+	methodName, _ := methodNames(stable)
+
 	if !nullable {
 		// The p != q check is mostly intended to catch the lhs = nil, rhs = nil case in which we would pointlessly
 		// allocate not just one but two empty values. However, it also provides us with an extra scope to establish
@@ -274,16 +303,16 @@ func (p *equal) compareCall(lhs, rhs string, msg *protogen.Message, nullable boo
 	switch {
 	case p.IsWellKnownType(msg):
 		wkt := p.WellKnownTypeMap(msg)
-		p.P(`if !(*`, wkt, `)(`, lhs, `).`, equalName, `((*`, wkt, `)(`, rhs, `)) {`)
+		p.P(`if !(*`, wkt, `)(`, lhs, `).`, methodName, `((*`, wkt, `)(`, rhs, `)) {`)
 		p.P(`	return false`)
 		p.P(`}`)
 	case p.IsLocalMessage(msg):
-		p.P(`if !`, lhs, `.`, equalName, `(`, rhs, `) {`)
+		p.P(`if !`, lhs, `.`, methodName, `(`, rhs, `) {`)
 		p.P(`	return false`)
 		p.P(`}`)
 	default:
-		p.P(`if equal, ok := interface{}(`, lhs, `).(interface { `, equalName, `(*`, p.QualifiedGoIdent(msg.GoIdent), `) bool }); ok {`)
-		p.P(`	if !equal.`, equalName, `(`, rhs, `) {`)
+		p.P(`if equal, ok := interface{}(`, lhs, `).(interface { `, methodName, `(*`, p.QualifiedGoIdent(msg.GoIdent), `) bool }); ok {`)
+		p.P(`	if !equal.`, methodName, `(`, rhs, `) {`)
 		p.P(`		return false`)
 		p.P(`	}`)
 		p.P(`} else if !`, p.Ident("google.golang.org/protobuf/proto", "Equal"), `(`, lhs, `, `, rhs, `) {`)

@@ -117,7 +117,31 @@ func (m *BytesValue) CloneVT() *BytesValue {
 	return r
 }
 
+func (this *DoubleValue) StableEqualVT(that *DoubleValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
 func (this *DoubleValue) EqualVT(that *DoubleValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
+func (this *FloatValue) StableEqualVT(that *FloatValue) bool {
 	if this == that {
 		return true
 	} else if this == nil || that == nil {
@@ -141,7 +165,31 @@ func (this *FloatValue) EqualVT(that *FloatValue) bool {
 	return true
 }
 
+func (this *Int64Value) StableEqualVT(that *Int64Value) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
 func (this *Int64Value) EqualVT(that *Int64Value) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
+func (this *UInt64Value) StableEqualVT(that *UInt64Value) bool {
 	if this == that {
 		return true
 	} else if this == nil || that == nil {
@@ -165,7 +213,31 @@ func (this *UInt64Value) EqualVT(that *UInt64Value) bool {
 	return true
 }
 
+func (this *Int32Value) StableEqualVT(that *Int32Value) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
 func (this *Int32Value) EqualVT(that *Int32Value) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
+func (this *UInt32Value) StableEqualVT(that *UInt32Value) bool {
 	if this == that {
 		return true
 	} else if this == nil || that == nil {
@@ -189,7 +261,31 @@ func (this *UInt32Value) EqualVT(that *UInt32Value) bool {
 	return true
 }
 
+func (this *BoolValue) StableEqualVT(that *BoolValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
 func (this *BoolValue) EqualVT(that *BoolValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
+func (this *StringValue) StableEqualVT(that *StringValue) bool {
 	if this == that {
 		return true
 	} else if this == nil || that == nil {
@@ -208,6 +304,18 @@ func (this *StringValue) EqualVT(that *StringValue) bool {
 		return false
 	}
 	if this.Value != that.Value {
+		return false
+	}
+	return true
+}
+
+func (this *BytesValue) StableEqualVT(that *BytesValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if string(this.Value) != string(that.Value) {
 		return false
 	}
 	return true

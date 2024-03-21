@@ -56,6 +56,22 @@ func (m *MemoryPoolExtension) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *OptionalMessage) StableEqualVT(that *OptionalMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OptionalMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OptionalMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *OptionalMessage) EqualVT(that *OptionalMessage) bool {
 	if this == that {
 		return true
@@ -71,6 +87,31 @@ func (this *OptionalMessage) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *MemoryPoolExtension) StableEqualVT(that *MemoryPoolExtension) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Foo1 != that.Foo1 {
+		return false
+	}
+	if this.Foo2 != that.Foo2 {
+		return false
+	}
+	if !this.Foo3.StableEqualVT(that.Foo3) {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *MemoryPoolExtension) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*MemoryPoolExtension)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *MemoryPoolExtension) EqualVT(that *MemoryPoolExtension) bool {
 	if this == that {

@@ -225,6 +225,331 @@ func (m *UnsafeTest_Sub5_) CloneVT() isUnsafeTest_Sub {
 	return r
 }
 
+func (this *UnsafeTest_Sub1) StableEqualVT(that *UnsafeTest_Sub1) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.S != that.S {
+		return false
+	}
+	if string(this.B) != string(that.B) {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest_Sub1) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest_Sub1)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest_Sub2) StableEqualVT(that *UnsafeTest_Sub2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.S) != len(that.S) {
+		return false
+	}
+	for i, vx := range this.S {
+		vy := that.S[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.B) != len(that.B) {
+		return false
+	}
+	for i, vx := range this.B {
+		vy := that.B[i]
+		if string(vx) != string(vy) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest_Sub2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest_Sub2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest_Sub3) StableEqualVT(that *UnsafeTest_Sub3) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Foo) != len(that.Foo) {
+		return false
+	}
+	for i, vx := range this.Foo {
+		vy, ok := that.Foo[i]
+		if !ok {
+			return false
+		}
+		if string(vx) != string(vy) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest_Sub3) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest_Sub3)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest_Sub4) StableEqualVT(that *UnsafeTest_Sub4) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Foo == nil && that.Foo != nil {
+		return false
+	} else if this.Foo != nil {
+		if that.Foo == nil {
+			return false
+		}
+		if !this.Foo.(interface {
+			StableEqualVT(isUnsafeTest_Sub4_Foo) bool
+		}).StableEqualVT(that.Foo) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest_Sub4) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest_Sub4)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest_Sub4_S) StableEqualVT(thatIface isUnsafeTest_Sub4_Foo) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub4_S)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.S != that.S {
+		return false
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub4_B) StableEqualVT(thatIface isUnsafeTest_Sub4_Foo) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub4_B)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if string(this.B) != string(that.B) {
+		return false
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub5) StableEqualVT(that *UnsafeTest_Sub5) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Foo) != len(that.Foo) {
+		return false
+	}
+	for i, vx := range this.Foo {
+		vy, ok := that.Foo[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest_Sub5) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest_Sub5)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest) StableEqualVT(that *UnsafeTest) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Sub == nil && that.Sub != nil {
+		return false
+	} else if this.Sub != nil {
+		if that.Sub == nil {
+			return false
+		}
+		if !this.Sub.(interface{ StableEqualVT(isUnsafeTest_Sub) bool }).StableEqualVT(that.Sub) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *UnsafeTest) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*UnsafeTest)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *UnsafeTest_Sub1_) StableEqualVT(thatIface isUnsafeTest_Sub) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub1_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Sub1, that.Sub1; p != q {
+		if p == nil {
+			p = &UnsafeTest_Sub1{}
+		}
+		if q == nil {
+			q = &UnsafeTest_Sub1{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub2_) StableEqualVT(thatIface isUnsafeTest_Sub) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub2_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Sub2, that.Sub2; p != q {
+		if p == nil {
+			p = &UnsafeTest_Sub2{}
+		}
+		if q == nil {
+			q = &UnsafeTest_Sub2{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub3_) StableEqualVT(thatIface isUnsafeTest_Sub) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub3_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Sub3, that.Sub3; p != q {
+		if p == nil {
+			p = &UnsafeTest_Sub3{}
+		}
+		if q == nil {
+			q = &UnsafeTest_Sub3{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub4_) StableEqualVT(thatIface isUnsafeTest_Sub) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub4_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Sub4, that.Sub4; p != q {
+		if p == nil {
+			p = &UnsafeTest_Sub4{}
+		}
+		if q == nil {
+			q = &UnsafeTest_Sub4{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *UnsafeTest_Sub5_) StableEqualVT(thatIface isUnsafeTest_Sub) bool {
+	that, ok := thatIface.(*UnsafeTest_Sub5_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Sub5, that.Sub5; p != q {
+		if p == nil {
+			p = &UnsafeTest_Sub5{}
+		}
+		if q == nil {
+			q = &UnsafeTest_Sub5{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
 func (this *UnsafeTest_Sub1) EqualVT(that *UnsafeTest_Sub1) bool {
 	if this == that {
 		return true

@@ -140,6 +140,35 @@ func (m *ListValue) CloneVT() *ListValue {
 	return r
 }
 
+func (this *Struct) StableEqualVT(that *Struct) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Fields) != len(that.Fields) {
+		return false
+	}
+	for i, vx := range this.Fields {
+		vy, ok := that.Fields[i]
+		if !ok {
+			return false
+		}
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &structpb.Value{}
+			}
+			if q == nil {
+				q = &structpb.Value{}
+			}
+			if !(*Value)(p).StableEqualVT((*Value)(q)) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 func (this *Struct) EqualVT(that *Struct) bool {
 	if this == that {
 		return true
@@ -164,6 +193,190 @@ func (this *Struct) EqualVT(that *Struct) bool {
 			if !(*Value)(p).EqualVT((*Value)(q)) {
 				return false
 			}
+		}
+	}
+	return true
+}
+
+func (this *Value) StableEqualVT(that *Value) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Kind == nil && that.Kind != nil {
+		return false
+	} else if this.Kind != nil {
+		if that.Kind == nil {
+			return false
+		}
+		switch c := this.Kind.(type) {
+		case *structpb.Value_NullValue:
+			if !(*Value_NullValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		case *structpb.Value_NumberValue:
+			if !(*Value_NumberValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		case *structpb.Value_StringValue:
+			if !(*Value_StringValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		case *structpb.Value_BoolValue:
+			if !(*Value_BoolValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		case *structpb.Value_StructValue:
+			if !(*Value_StructValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		case *structpb.Value_ListValue:
+			if !(*Value_ListValue)(c).StableEqualVT(that.Kind) {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func (this *Value_NullValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_NullValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_NullValue); ok {
+			that = (*Value_NullValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.NullValue != that.NullValue {
+		return false
+	}
+	return true
+}
+
+func (this *Value_NumberValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_NumberValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_NumberValue); ok {
+			that = (*Value_NumberValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.NumberValue != that.NumberValue {
+		return false
+	}
+	return true
+}
+
+func (this *Value_StringValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_StringValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_StringValue); ok {
+			that = (*Value_StringValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.StringValue != that.StringValue {
+		return false
+	}
+	return true
+}
+
+func (this *Value_BoolValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_BoolValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_BoolValue); ok {
+			that = (*Value_BoolValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.BoolValue != that.BoolValue {
+		return false
+	}
+	return true
+}
+
+func (this *Value_StructValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_StructValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_StructValue); ok {
+			that = (*Value_StructValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.StructValue, that.StructValue; p != q {
+		if p == nil {
+			p = &structpb.Struct{}
+		}
+		if q == nil {
+			q = &structpb.Struct{}
+		}
+		if !(*Struct)(p).StableEqualVT((*Struct)(q)) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *Value_ListValue) StableEqualVT(thatIface any) bool {
+	that, ok := thatIface.(*Value_ListValue)
+	if !ok {
+		if ot, ok := thatIface.(*structpb.Value_ListValue); ok {
+			that = (*Value_ListValue)(ot)
+		} else {
+			return false
+		}
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.ListValue, that.ListValue; p != q {
+		if p == nil {
+			p = &structpb.ListValue{}
+		}
+		if q == nil {
+			q = &structpb.ListValue{}
+		}
+		if !(*ListValue)(p).StableEqualVT((*ListValue)(q)) {
+			return false
 		}
 	}
 	return true
@@ -348,6 +561,32 @@ func (this *Value_ListValue) EqualVT(thatIface any) bool {
 		}
 		if !(*ListValue)(p).EqualVT((*ListValue)(q)) {
 			return false
+		}
+	}
+	return true
+}
+
+func (this *ListValue) StableEqualVT(that *ListValue) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Values) != len(that.Values) {
+		return false
+	}
+	for i, vx := range this.Values {
+		vy := that.Values[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &structpb.Value{}
+			}
+			if q == nil {
+				q = &structpb.Value{}
+			}
+			if !(*Value)(p).StableEqualVT((*Value)(q)) {
+				return false
+			}
 		}
 	}
 	return true

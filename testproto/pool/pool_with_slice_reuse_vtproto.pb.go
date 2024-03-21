@@ -117,6 +117,31 @@ func (m *Element2) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *Test1) StableEqualVT(that *Test1) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Sl) != len(that.Sl) {
+		return false
+	}
+	for i, vx := range this.Sl {
+		vy := that.Sl[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Test1) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Test1)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *Test1) EqualVT(that *Test1) bool {
 	if this == that {
 		return true
@@ -141,6 +166,39 @@ func (this *Test1) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Test2) StableEqualVT(that *Test2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Sl) != len(that.Sl) {
+		return false
+	}
+	for i, vx := range this.Sl {
+		vy := that.Sl[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &Slice2{}
+			}
+			if q == nil {
+				q = &Slice2{}
+			}
+			if !p.StableEqualVT(q) {
+				return false
+			}
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Test2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Test2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Test2) EqualVT(that *Test2) bool {
 	if this == that {
@@ -174,6 +232,55 @@ func (this *Test2) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Slice2) StableEqualVT(that *Slice2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.A) != len(that.A) {
+		return false
+	}
+	for i, vx := range this.A {
+		vy, ok := that.A[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if p, q := this.B, that.B; (p == nil && q != nil) || (p != nil && (q == nil || *p != *q)) {
+		return false
+	}
+	if len(this.C) != len(that.C) {
+		return false
+	}
+	for i, vx := range this.C {
+		vy := that.C[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if !this.D.StableEqualVT(that.D) {
+		return false
+	}
+	if this.E != that.E {
+		return false
+	}
+	if this.F != that.F {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Slice2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Slice2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Slice2) EqualVT(that *Slice2) bool {
 	if this == that {
@@ -223,6 +330,25 @@ func (this *Slice2) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *Element2) StableEqualVT(that *Element2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.A != that.A {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *Element2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*Element2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *Element2) EqualVT(that *Element2) bool {
 	if this == that {

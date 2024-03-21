@@ -31,6 +31,21 @@ func (m *Duration) CloneVT() *Duration {
 	return r
 }
 
+func (this *Duration) StableEqualVT(that *Duration) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Seconds != that.Seconds {
+		return false
+	}
+	if this.Nanos != that.Nanos {
+		return false
+	}
+	return true
+}
+
 func (this *Duration) EqualVT(that *Duration) bool {
 	if this == that {
 		return true

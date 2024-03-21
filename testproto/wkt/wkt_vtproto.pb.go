@@ -67,6 +67,76 @@ func (m *MessageWithWKT) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *MessageWithWKT) StableEqualVT(that *MessageWithWKT) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if !(*anypb1.Any)(this.Any).StableEqualVT((*anypb1.Any)(that.Any)) {
+		return false
+	}
+	if !(*durationpb1.Duration)(this.Duration).StableEqualVT((*durationpb1.Duration)(that.Duration)) {
+		return false
+	}
+	if !(*emptypb1.Empty)(this.Empty).StableEqualVT((*emptypb1.Empty)(that.Empty)) {
+		return false
+	}
+	if !(*fieldmaskpb1.FieldMask)(this.FieldMask).StableEqualVT((*fieldmaskpb1.FieldMask)(that.FieldMask)) {
+		return false
+	}
+	if !(*timestamppb1.Timestamp)(this.Timestamp).StableEqualVT((*timestamppb1.Timestamp)(that.Timestamp)) {
+		return false
+	}
+	if !(*wrapperspb1.DoubleValue)(this.DoubleValue).StableEqualVT((*wrapperspb1.DoubleValue)(that.DoubleValue)) {
+		return false
+	}
+	if !(*wrapperspb1.FloatValue)(this.FloatValue).StableEqualVT((*wrapperspb1.FloatValue)(that.FloatValue)) {
+		return false
+	}
+	if !(*wrapperspb1.Int64Value)(this.Int64Value).StableEqualVT((*wrapperspb1.Int64Value)(that.Int64Value)) {
+		return false
+	}
+	if !(*wrapperspb1.UInt64Value)(this.Uint64Value).StableEqualVT((*wrapperspb1.UInt64Value)(that.Uint64Value)) {
+		return false
+	}
+	if !(*wrapperspb1.Int32Value)(this.Int32Value).StableEqualVT((*wrapperspb1.Int32Value)(that.Int32Value)) {
+		return false
+	}
+	if !(*wrapperspb1.UInt32Value)(this.Uint32Value).StableEqualVT((*wrapperspb1.UInt32Value)(that.Uint32Value)) {
+		return false
+	}
+	if !(*wrapperspb1.BoolValue)(this.BoolValue).StableEqualVT((*wrapperspb1.BoolValue)(that.BoolValue)) {
+		return false
+	}
+	if !(*wrapperspb1.StringValue)(this.StringValue).StableEqualVT((*wrapperspb1.StringValue)(that.StringValue)) {
+		return false
+	}
+	if !(*wrapperspb1.BytesValue)(this.BytesValue).StableEqualVT((*wrapperspb1.BytesValue)(that.BytesValue)) {
+		return false
+	}
+	if !(*structpb1.Struct)(this.StructValue).StableEqualVT((*structpb1.Struct)(that.StructValue)) {
+		return false
+	}
+	if !(*structpb1.Value)(this.ValueValue).StableEqualVT((*structpb1.Value)(that.ValueValue)) {
+		return false
+	}
+	if !(*structpb1.ListValue)(this.ListvalueValue).StableEqualVT((*structpb1.ListValue)(that.ListvalueValue)) {
+		return false
+	}
+	if this.NullValue != that.NullValue {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *MessageWithWKT) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*MessageWithWKT)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *MessageWithWKT) EqualVT(that *MessageWithWKT) bool {
 	if this == that {
 		return true
