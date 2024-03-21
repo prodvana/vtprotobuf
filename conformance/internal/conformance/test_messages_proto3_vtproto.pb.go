@@ -777,6 +777,1378 @@ func (m *EnumOnlyProto3) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *TestAllTypesProto3_NestedMessage) StableEqualVT(that *TestAllTypesProto3_NestedMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.A != that.A {
+		return false
+	}
+	if !this.Corecursive.StableEqualVT(that.Corecursive) {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *TestAllTypesProto3_NestedMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*TestAllTypesProto3_NestedMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *TestAllTypesProto3) StableEqualVT(that *TestAllTypesProto3) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.OneofField == nil && that.OneofField != nil {
+		return false
+	} else if this.OneofField != nil {
+		if that.OneofField == nil {
+			return false
+		}
+		if !this.OneofField.(interface {
+			StableEqualVT(isTestAllTypesProto3_OneofField) bool
+		}).StableEqualVT(that.OneofField) {
+			return false
+		}
+	}
+	if this.OptionalInt32 != that.OptionalInt32 {
+		return false
+	}
+	if this.OptionalInt64 != that.OptionalInt64 {
+		return false
+	}
+	if this.OptionalUint32 != that.OptionalUint32 {
+		return false
+	}
+	if this.OptionalUint64 != that.OptionalUint64 {
+		return false
+	}
+	if this.OptionalSint32 != that.OptionalSint32 {
+		return false
+	}
+	if this.OptionalSint64 != that.OptionalSint64 {
+		return false
+	}
+	if this.OptionalFixed32 != that.OptionalFixed32 {
+		return false
+	}
+	if this.OptionalFixed64 != that.OptionalFixed64 {
+		return false
+	}
+	if this.OptionalSfixed32 != that.OptionalSfixed32 {
+		return false
+	}
+	if this.OptionalSfixed64 != that.OptionalSfixed64 {
+		return false
+	}
+	if this.OptionalFloat != that.OptionalFloat {
+		return false
+	}
+	if this.OptionalDouble != that.OptionalDouble {
+		return false
+	}
+	if this.OptionalBool != that.OptionalBool {
+		return false
+	}
+	if this.OptionalString != that.OptionalString {
+		return false
+	}
+	if string(this.OptionalBytes) != string(that.OptionalBytes) {
+		return false
+	}
+	if !this.OptionalNestedMessage.StableEqualVT(that.OptionalNestedMessage) {
+		return false
+	}
+	if !this.OptionalForeignMessage.StableEqualVT(that.OptionalForeignMessage) {
+		return false
+	}
+	if this.OptionalNestedEnum != that.OptionalNestedEnum {
+		return false
+	}
+	if this.OptionalForeignEnum != that.OptionalForeignEnum {
+		return false
+	}
+	if this.OptionalAliasedEnum != that.OptionalAliasedEnum {
+		return false
+	}
+	if this.OptionalStringPiece != that.OptionalStringPiece {
+		return false
+	}
+	if this.OptionalCord != that.OptionalCord {
+		return false
+	}
+	if !this.RecursiveMessage.StableEqualVT(that.RecursiveMessage) {
+		return false
+	}
+	if len(this.RepeatedInt32) != len(that.RepeatedInt32) {
+		return false
+	}
+	for i, vx := range this.RepeatedInt32 {
+		vy := that.RepeatedInt32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedInt64) != len(that.RepeatedInt64) {
+		return false
+	}
+	for i, vx := range this.RepeatedInt64 {
+		vy := that.RepeatedInt64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedUint32) != len(that.RepeatedUint32) {
+		return false
+	}
+	for i, vx := range this.RepeatedUint32 {
+		vy := that.RepeatedUint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedUint64) != len(that.RepeatedUint64) {
+		return false
+	}
+	for i, vx := range this.RepeatedUint64 {
+		vy := that.RepeatedUint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedSint32) != len(that.RepeatedSint32) {
+		return false
+	}
+	for i, vx := range this.RepeatedSint32 {
+		vy := that.RepeatedSint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedSint64) != len(that.RepeatedSint64) {
+		return false
+	}
+	for i, vx := range this.RepeatedSint64 {
+		vy := that.RepeatedSint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedFixed32) != len(that.RepeatedFixed32) {
+		return false
+	}
+	for i, vx := range this.RepeatedFixed32 {
+		vy := that.RepeatedFixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedFixed64) != len(that.RepeatedFixed64) {
+		return false
+	}
+	for i, vx := range this.RepeatedFixed64 {
+		vy := that.RepeatedFixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedSfixed32) != len(that.RepeatedSfixed32) {
+		return false
+	}
+	for i, vx := range this.RepeatedSfixed32 {
+		vy := that.RepeatedSfixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedSfixed64) != len(that.RepeatedSfixed64) {
+		return false
+	}
+	for i, vx := range this.RepeatedSfixed64 {
+		vy := that.RepeatedSfixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedFloat) != len(that.RepeatedFloat) {
+		return false
+	}
+	for i, vx := range this.RepeatedFloat {
+		vy := that.RepeatedFloat[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedDouble) != len(that.RepeatedDouble) {
+		return false
+	}
+	for i, vx := range this.RepeatedDouble {
+		vy := that.RepeatedDouble[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedBool) != len(that.RepeatedBool) {
+		return false
+	}
+	for i, vx := range this.RepeatedBool {
+		vy := that.RepeatedBool[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedString) != len(that.RepeatedString) {
+		return false
+	}
+	for i, vx := range this.RepeatedString {
+		vy := that.RepeatedString[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedBytes) != len(that.RepeatedBytes) {
+		return false
+	}
+	for i, vx := range this.RepeatedBytes {
+		vy := that.RepeatedBytes[i]
+		if string(vx) != string(vy) {
+			return false
+		}
+	}
+	if len(this.RepeatedNestedMessage) != len(that.RepeatedNestedMessage) {
+		return false
+	}
+	for i, vx := range this.RepeatedNestedMessage {
+		vy := that.RepeatedNestedMessage[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &TestAllTypesProto3_NestedMessage{}
+			}
+			if q == nil {
+				q = &TestAllTypesProto3_NestedMessage{}
+			}
+			if !p.StableEqualVT(q) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedForeignMessage) != len(that.RepeatedForeignMessage) {
+		return false
+	}
+	for i, vx := range this.RepeatedForeignMessage {
+		vy := that.RepeatedForeignMessage[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &ForeignMessage{}
+			}
+			if q == nil {
+				q = &ForeignMessage{}
+			}
+			if !p.StableEqualVT(q) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedNestedEnum) != len(that.RepeatedNestedEnum) {
+		return false
+	}
+	for i, vx := range this.RepeatedNestedEnum {
+		vy := that.RepeatedNestedEnum[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedForeignEnum) != len(that.RepeatedForeignEnum) {
+		return false
+	}
+	for i, vx := range this.RepeatedForeignEnum {
+		vy := that.RepeatedForeignEnum[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedStringPiece) != len(that.RepeatedStringPiece) {
+		return false
+	}
+	for i, vx := range this.RepeatedStringPiece {
+		vy := that.RepeatedStringPiece[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.RepeatedCord) != len(that.RepeatedCord) {
+		return false
+	}
+	for i, vx := range this.RepeatedCord {
+		vy := that.RepeatedCord[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapInt32Int32) != len(that.MapInt32Int32) {
+		return false
+	}
+	for i, vx := range this.MapInt32Int32 {
+		vy, ok := that.MapInt32Int32[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapInt64Int64) != len(that.MapInt64Int64) {
+		return false
+	}
+	for i, vx := range this.MapInt64Int64 {
+		vy, ok := that.MapInt64Int64[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapUint32Uint32) != len(that.MapUint32Uint32) {
+		return false
+	}
+	for i, vx := range this.MapUint32Uint32 {
+		vy, ok := that.MapUint32Uint32[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapUint64Uint64) != len(that.MapUint64Uint64) {
+		return false
+	}
+	for i, vx := range this.MapUint64Uint64 {
+		vy, ok := that.MapUint64Uint64[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapSint32Sint32) != len(that.MapSint32Sint32) {
+		return false
+	}
+	for i, vx := range this.MapSint32Sint32 {
+		vy, ok := that.MapSint32Sint32[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapSint64Sint64) != len(that.MapSint64Sint64) {
+		return false
+	}
+	for i, vx := range this.MapSint64Sint64 {
+		vy, ok := that.MapSint64Sint64[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapFixed32Fixed32) != len(that.MapFixed32Fixed32) {
+		return false
+	}
+	for i, vx := range this.MapFixed32Fixed32 {
+		vy, ok := that.MapFixed32Fixed32[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapFixed64Fixed64) != len(that.MapFixed64Fixed64) {
+		return false
+	}
+	for i, vx := range this.MapFixed64Fixed64 {
+		vy, ok := that.MapFixed64Fixed64[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapSfixed32Sfixed32) != len(that.MapSfixed32Sfixed32) {
+		return false
+	}
+	for i, vx := range this.MapSfixed32Sfixed32 {
+		vy, ok := that.MapSfixed32Sfixed32[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapSfixed64Sfixed64) != len(that.MapSfixed64Sfixed64) {
+		return false
+	}
+	for i, vx := range this.MapSfixed64Sfixed64 {
+		vy, ok := that.MapSfixed64Sfixed64[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapInt32Float) != len(that.MapInt32Float) {
+		return false
+	}
+	for i, vx := range this.MapInt32Float {
+		vy, ok := that.MapInt32Float[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapInt32Double) != len(that.MapInt32Double) {
+		return false
+	}
+	for i, vx := range this.MapInt32Double {
+		vy, ok := that.MapInt32Double[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapBoolBool) != len(that.MapBoolBool) {
+		return false
+	}
+	for i, vx := range this.MapBoolBool {
+		vy, ok := that.MapBoolBool[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapStringString) != len(that.MapStringString) {
+		return false
+	}
+	for i, vx := range this.MapStringString {
+		vy, ok := that.MapStringString[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapStringBytes) != len(that.MapStringBytes) {
+		return false
+	}
+	for i, vx := range this.MapStringBytes {
+		vy, ok := that.MapStringBytes[i]
+		if !ok {
+			return false
+		}
+		if string(vx) != string(vy) {
+			return false
+		}
+	}
+	if len(this.MapStringNestedMessage) != len(that.MapStringNestedMessage) {
+		return false
+	}
+	for i, vx := range this.MapStringNestedMessage {
+		vy, ok := that.MapStringNestedMessage[i]
+		if !ok {
+			return false
+		}
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &TestAllTypesProto3_NestedMessage{}
+			}
+			if q == nil {
+				q = &TestAllTypesProto3_NestedMessage{}
+			}
+			if !p.StableEqualVT(q) {
+				return false
+			}
+		}
+	}
+	if len(this.MapStringForeignMessage) != len(that.MapStringForeignMessage) {
+		return false
+	}
+	for i, vx := range this.MapStringForeignMessage {
+		vy, ok := that.MapStringForeignMessage[i]
+		if !ok {
+			return false
+		}
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &ForeignMessage{}
+			}
+			if q == nil {
+				q = &ForeignMessage{}
+			}
+			if !p.StableEqualVT(q) {
+				return false
+			}
+		}
+	}
+	if len(this.MapStringNestedEnum) != len(that.MapStringNestedEnum) {
+		return false
+	}
+	for i, vx := range this.MapStringNestedEnum {
+		vy, ok := that.MapStringNestedEnum[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.MapStringForeignEnum) != len(that.MapStringForeignEnum) {
+		return false
+	}
+	for i, vx := range this.MapStringForeignEnum {
+		vy, ok := that.MapStringForeignEnum[i]
+		if !ok {
+			return false
+		}
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedInt32) != len(that.PackedInt32) {
+		return false
+	}
+	for i, vx := range this.PackedInt32 {
+		vy := that.PackedInt32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedInt64) != len(that.PackedInt64) {
+		return false
+	}
+	for i, vx := range this.PackedInt64 {
+		vy := that.PackedInt64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedUint32) != len(that.PackedUint32) {
+		return false
+	}
+	for i, vx := range this.PackedUint32 {
+		vy := that.PackedUint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedUint64) != len(that.PackedUint64) {
+		return false
+	}
+	for i, vx := range this.PackedUint64 {
+		vy := that.PackedUint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedSint32) != len(that.PackedSint32) {
+		return false
+	}
+	for i, vx := range this.PackedSint32 {
+		vy := that.PackedSint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedSint64) != len(that.PackedSint64) {
+		return false
+	}
+	for i, vx := range this.PackedSint64 {
+		vy := that.PackedSint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedFixed32) != len(that.PackedFixed32) {
+		return false
+	}
+	for i, vx := range this.PackedFixed32 {
+		vy := that.PackedFixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedFixed64) != len(that.PackedFixed64) {
+		return false
+	}
+	for i, vx := range this.PackedFixed64 {
+		vy := that.PackedFixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedSfixed32) != len(that.PackedSfixed32) {
+		return false
+	}
+	for i, vx := range this.PackedSfixed32 {
+		vy := that.PackedSfixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedSfixed64) != len(that.PackedSfixed64) {
+		return false
+	}
+	for i, vx := range this.PackedSfixed64 {
+		vy := that.PackedSfixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedFloat) != len(that.PackedFloat) {
+		return false
+	}
+	for i, vx := range this.PackedFloat {
+		vy := that.PackedFloat[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedDouble) != len(that.PackedDouble) {
+		return false
+	}
+	for i, vx := range this.PackedDouble {
+		vy := that.PackedDouble[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedBool) != len(that.PackedBool) {
+		return false
+	}
+	for i, vx := range this.PackedBool {
+		vy := that.PackedBool[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.PackedNestedEnum) != len(that.PackedNestedEnum) {
+		return false
+	}
+	for i, vx := range this.PackedNestedEnum {
+		vy := that.PackedNestedEnum[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedInt32) != len(that.UnpackedInt32) {
+		return false
+	}
+	for i, vx := range this.UnpackedInt32 {
+		vy := that.UnpackedInt32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedInt64) != len(that.UnpackedInt64) {
+		return false
+	}
+	for i, vx := range this.UnpackedInt64 {
+		vy := that.UnpackedInt64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedUint32) != len(that.UnpackedUint32) {
+		return false
+	}
+	for i, vx := range this.UnpackedUint32 {
+		vy := that.UnpackedUint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedUint64) != len(that.UnpackedUint64) {
+		return false
+	}
+	for i, vx := range this.UnpackedUint64 {
+		vy := that.UnpackedUint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedSint32) != len(that.UnpackedSint32) {
+		return false
+	}
+	for i, vx := range this.UnpackedSint32 {
+		vy := that.UnpackedSint32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedSint64) != len(that.UnpackedSint64) {
+		return false
+	}
+	for i, vx := range this.UnpackedSint64 {
+		vy := that.UnpackedSint64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedFixed32) != len(that.UnpackedFixed32) {
+		return false
+	}
+	for i, vx := range this.UnpackedFixed32 {
+		vy := that.UnpackedFixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedFixed64) != len(that.UnpackedFixed64) {
+		return false
+	}
+	for i, vx := range this.UnpackedFixed64 {
+		vy := that.UnpackedFixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedSfixed32) != len(that.UnpackedSfixed32) {
+		return false
+	}
+	for i, vx := range this.UnpackedSfixed32 {
+		vy := that.UnpackedSfixed32[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedSfixed64) != len(that.UnpackedSfixed64) {
+		return false
+	}
+	for i, vx := range this.UnpackedSfixed64 {
+		vy := that.UnpackedSfixed64[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedFloat) != len(that.UnpackedFloat) {
+		return false
+	}
+	for i, vx := range this.UnpackedFloat {
+		vy := that.UnpackedFloat[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedDouble) != len(that.UnpackedDouble) {
+		return false
+	}
+	for i, vx := range this.UnpackedDouble {
+		vy := that.UnpackedDouble[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedBool) != len(that.UnpackedBool) {
+		return false
+	}
+	for i, vx := range this.UnpackedBool {
+		vy := that.UnpackedBool[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if len(this.UnpackedNestedEnum) != len(that.UnpackedNestedEnum) {
+		return false
+	}
+	for i, vx := range this.UnpackedNestedEnum {
+		vy := that.UnpackedNestedEnum[i]
+		if vx != vy {
+			return false
+		}
+	}
+	if !(*wrapperspb1.BoolValue)(this.OptionalBoolWrapper).StableEqualVT((*wrapperspb1.BoolValue)(that.OptionalBoolWrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.Int32Value)(this.OptionalInt32Wrapper).StableEqualVT((*wrapperspb1.Int32Value)(that.OptionalInt32Wrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.Int64Value)(this.OptionalInt64Wrapper).StableEqualVT((*wrapperspb1.Int64Value)(that.OptionalInt64Wrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.UInt32Value)(this.OptionalUint32Wrapper).StableEqualVT((*wrapperspb1.UInt32Value)(that.OptionalUint32Wrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.UInt64Value)(this.OptionalUint64Wrapper).StableEqualVT((*wrapperspb1.UInt64Value)(that.OptionalUint64Wrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.FloatValue)(this.OptionalFloatWrapper).StableEqualVT((*wrapperspb1.FloatValue)(that.OptionalFloatWrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.DoubleValue)(this.OptionalDoubleWrapper).StableEqualVT((*wrapperspb1.DoubleValue)(that.OptionalDoubleWrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.StringValue)(this.OptionalStringWrapper).StableEqualVT((*wrapperspb1.StringValue)(that.OptionalStringWrapper)) {
+		return false
+	}
+	if !(*wrapperspb1.BytesValue)(this.OptionalBytesWrapper).StableEqualVT((*wrapperspb1.BytesValue)(that.OptionalBytesWrapper)) {
+		return false
+	}
+	if len(this.RepeatedBoolWrapper) != len(that.RepeatedBoolWrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedBoolWrapper {
+		vy := that.RepeatedBoolWrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.BoolValue{}
+			}
+			if q == nil {
+				q = &wrapperspb.BoolValue{}
+			}
+			if !(*wrapperspb1.BoolValue)(p).StableEqualVT((*wrapperspb1.BoolValue)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedInt32Wrapper) != len(that.RepeatedInt32Wrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedInt32Wrapper {
+		vy := that.RepeatedInt32Wrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.Int32Value{}
+			}
+			if q == nil {
+				q = &wrapperspb.Int32Value{}
+			}
+			if !(*wrapperspb1.Int32Value)(p).StableEqualVT((*wrapperspb1.Int32Value)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedInt64Wrapper) != len(that.RepeatedInt64Wrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedInt64Wrapper {
+		vy := that.RepeatedInt64Wrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.Int64Value{}
+			}
+			if q == nil {
+				q = &wrapperspb.Int64Value{}
+			}
+			if !(*wrapperspb1.Int64Value)(p).StableEqualVT((*wrapperspb1.Int64Value)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedUint32Wrapper) != len(that.RepeatedUint32Wrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedUint32Wrapper {
+		vy := that.RepeatedUint32Wrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.UInt32Value{}
+			}
+			if q == nil {
+				q = &wrapperspb.UInt32Value{}
+			}
+			if !(*wrapperspb1.UInt32Value)(p).StableEqualVT((*wrapperspb1.UInt32Value)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedUint64Wrapper) != len(that.RepeatedUint64Wrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedUint64Wrapper {
+		vy := that.RepeatedUint64Wrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.UInt64Value{}
+			}
+			if q == nil {
+				q = &wrapperspb.UInt64Value{}
+			}
+			if !(*wrapperspb1.UInt64Value)(p).StableEqualVT((*wrapperspb1.UInt64Value)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedFloatWrapper) != len(that.RepeatedFloatWrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedFloatWrapper {
+		vy := that.RepeatedFloatWrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.FloatValue{}
+			}
+			if q == nil {
+				q = &wrapperspb.FloatValue{}
+			}
+			if !(*wrapperspb1.FloatValue)(p).StableEqualVT((*wrapperspb1.FloatValue)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedDoubleWrapper) != len(that.RepeatedDoubleWrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedDoubleWrapper {
+		vy := that.RepeatedDoubleWrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.DoubleValue{}
+			}
+			if q == nil {
+				q = &wrapperspb.DoubleValue{}
+			}
+			if !(*wrapperspb1.DoubleValue)(p).StableEqualVT((*wrapperspb1.DoubleValue)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedStringWrapper) != len(that.RepeatedStringWrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedStringWrapper {
+		vy := that.RepeatedStringWrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.StringValue{}
+			}
+			if q == nil {
+				q = &wrapperspb.StringValue{}
+			}
+			if !(*wrapperspb1.StringValue)(p).StableEqualVT((*wrapperspb1.StringValue)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedBytesWrapper) != len(that.RepeatedBytesWrapper) {
+		return false
+	}
+	for i, vx := range this.RepeatedBytesWrapper {
+		vy := that.RepeatedBytesWrapper[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &wrapperspb.BytesValue{}
+			}
+			if q == nil {
+				q = &wrapperspb.BytesValue{}
+			}
+			if !(*wrapperspb1.BytesValue)(p).StableEqualVT((*wrapperspb1.BytesValue)(q)) {
+				return false
+			}
+		}
+	}
+	if !(*durationpb1.Duration)(this.OptionalDuration).StableEqualVT((*durationpb1.Duration)(that.OptionalDuration)) {
+		return false
+	}
+	if !(*timestamppb1.Timestamp)(this.OptionalTimestamp).StableEqualVT((*timestamppb1.Timestamp)(that.OptionalTimestamp)) {
+		return false
+	}
+	if !(*fieldmaskpb1.FieldMask)(this.OptionalFieldMask).StableEqualVT((*fieldmaskpb1.FieldMask)(that.OptionalFieldMask)) {
+		return false
+	}
+	if !(*structpb1.Struct)(this.OptionalStruct).StableEqualVT((*structpb1.Struct)(that.OptionalStruct)) {
+		return false
+	}
+	if !(*anypb1.Any)(this.OptionalAny).StableEqualVT((*anypb1.Any)(that.OptionalAny)) {
+		return false
+	}
+	if !(*structpb1.Value)(this.OptionalValue).StableEqualVT((*structpb1.Value)(that.OptionalValue)) {
+		return false
+	}
+	if this.OptionalNullValue != that.OptionalNullValue {
+		return false
+	}
+	if len(this.RepeatedDuration) != len(that.RepeatedDuration) {
+		return false
+	}
+	for i, vx := range this.RepeatedDuration {
+		vy := that.RepeatedDuration[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &durationpb.Duration{}
+			}
+			if q == nil {
+				q = &durationpb.Duration{}
+			}
+			if !(*durationpb1.Duration)(p).StableEqualVT((*durationpb1.Duration)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedTimestamp) != len(that.RepeatedTimestamp) {
+		return false
+	}
+	for i, vx := range this.RepeatedTimestamp {
+		vy := that.RepeatedTimestamp[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &timestamppb.Timestamp{}
+			}
+			if q == nil {
+				q = &timestamppb.Timestamp{}
+			}
+			if !(*timestamppb1.Timestamp)(p).StableEqualVT((*timestamppb1.Timestamp)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedFieldmask) != len(that.RepeatedFieldmask) {
+		return false
+	}
+	for i, vx := range this.RepeatedFieldmask {
+		vy := that.RepeatedFieldmask[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &fieldmaskpb.FieldMask{}
+			}
+			if q == nil {
+				q = &fieldmaskpb.FieldMask{}
+			}
+			if !(*fieldmaskpb1.FieldMask)(p).StableEqualVT((*fieldmaskpb1.FieldMask)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedAny) != len(that.RepeatedAny) {
+		return false
+	}
+	for i, vx := range this.RepeatedAny {
+		vy := that.RepeatedAny[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &anypb.Any{}
+			}
+			if q == nil {
+				q = &anypb.Any{}
+			}
+			if !(*anypb1.Any)(p).StableEqualVT((*anypb1.Any)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedValue) != len(that.RepeatedValue) {
+		return false
+	}
+	for i, vx := range this.RepeatedValue {
+		vy := that.RepeatedValue[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &structpb.Value{}
+			}
+			if q == nil {
+				q = &structpb.Value{}
+			}
+			if !(*structpb1.Value)(p).StableEqualVT((*structpb1.Value)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedListValue) != len(that.RepeatedListValue) {
+		return false
+	}
+	for i, vx := range this.RepeatedListValue {
+		vy := that.RepeatedListValue[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &structpb.ListValue{}
+			}
+			if q == nil {
+				q = &structpb.ListValue{}
+			}
+			if !(*structpb1.ListValue)(p).StableEqualVT((*structpb1.ListValue)(q)) {
+				return false
+			}
+		}
+	}
+	if len(this.RepeatedStruct) != len(that.RepeatedStruct) {
+		return false
+	}
+	for i, vx := range this.RepeatedStruct {
+		vy := that.RepeatedStruct[i]
+		if p, q := vx, vy; p != q {
+			if p == nil {
+				p = &structpb.Struct{}
+			}
+			if q == nil {
+				q = &structpb.Struct{}
+			}
+			if !(*structpb1.Struct)(p).StableEqualVT((*structpb1.Struct)(q)) {
+				return false
+			}
+		}
+	}
+	if this.Fieldname1 != that.Fieldname1 {
+		return false
+	}
+	if this.FieldName2 != that.FieldName2 {
+		return false
+	}
+	if this.XFieldName3 != that.XFieldName3 {
+		return false
+	}
+	if this.Field_Name4_ != that.Field_Name4_ {
+		return false
+	}
+	if this.Field0Name5 != that.Field0Name5 {
+		return false
+	}
+	if this.Field_0Name6 != that.Field_0Name6 {
+		return false
+	}
+	if this.FieldName7 != that.FieldName7 {
+		return false
+	}
+	if this.FieldName8 != that.FieldName8 {
+		return false
+	}
+	if this.Field_Name9 != that.Field_Name9 {
+		return false
+	}
+	if this.Field_Name10 != that.Field_Name10 {
+		return false
+	}
+	if this.FIELD_NAME11 != that.FIELD_NAME11 {
+		return false
+	}
+	if this.FIELDName12 != that.FIELDName12 {
+		return false
+	}
+	if this.XFieldName13 != that.XFieldName13 {
+		return false
+	}
+	if this.X_FieldName14 != that.X_FieldName14 {
+		return false
+	}
+	if this.Field_Name15 != that.Field_Name15 {
+		return false
+	}
+	if this.Field__Name16 != that.Field__Name16 {
+		return false
+	}
+	if this.FieldName17__ != that.FieldName17__ {
+		return false
+	}
+	if this.FieldName18__ != that.FieldName18__ {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *TestAllTypesProto3) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*TestAllTypesProto3)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *TestAllTypesProto3_OneofUint32) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofUint32)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofUint32 != that.OneofUint32 {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofNestedMessage) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofNestedMessage)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.OneofNestedMessage, that.OneofNestedMessage; p != q {
+		if p == nil {
+			p = &TestAllTypesProto3_NestedMessage{}
+		}
+		if q == nil {
+			q = &TestAllTypesProto3_NestedMessage{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofString) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofString)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofString != that.OneofString {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofBytes) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofBytes)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if string(this.OneofBytes) != string(that.OneofBytes) {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofBool) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofBool)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofBool != that.OneofBool {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofUint64) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofUint64)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofUint64 != that.OneofUint64 {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofFloat) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofFloat)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofFloat != that.OneofFloat {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofDouble) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofDouble)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofDouble != that.OneofDouble {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofEnum) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofEnum)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofEnum != that.OneofEnum {
+		return false
+	}
+	return true
+}
+
+func (this *TestAllTypesProto3_OneofNullValue) StableEqualVT(thatIface isTestAllTypesProto3_OneofField) bool {
+	that, ok := thatIface.(*TestAllTypesProto3_OneofNullValue)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.OneofNullValue != that.OneofNullValue {
+		return false
+	}
+	return true
+}
+
 func (this *TestAllTypesProto3_NestedMessage) EqualVT(that *TestAllTypesProto3_NestedMessage) bool {
 	if this == that {
 		return true
@@ -2149,6 +3521,25 @@ func (this *TestAllTypesProto3_OneofNullValue) EqualVT(thatIface isTestAllTypesP
 	return true
 }
 
+func (this *ForeignMessage) StableEqualVT(that *ForeignMessage) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.C != that.C {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *ForeignMessage) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*ForeignMessage)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *ForeignMessage) EqualVT(that *ForeignMessage) bool {
 	if this == that {
 		return true
@@ -2168,6 +3559,22 @@ func (this *ForeignMessage) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *NullHypothesisProto3) StableEqualVT(that *NullHypothesisProto3) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *NullHypothesisProto3) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*NullHypothesisProto3)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *NullHypothesisProto3) EqualVT(that *NullHypothesisProto3) bool {
 	if this == that {
 		return true
@@ -2183,6 +3590,22 @@ func (this *NullHypothesisProto3) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *EnumOnlyProto3) StableEqualVT(that *EnumOnlyProto3) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *EnumOnlyProto3) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*EnumOnlyProto3)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *EnumOnlyProto3) EqualVT(that *EnumOnlyProto3) bool {
 	if this == that {

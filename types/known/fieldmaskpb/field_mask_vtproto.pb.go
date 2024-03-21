@@ -35,6 +35,24 @@ func (m *FieldMask) CloneVT() *FieldMask {
 	return r
 }
 
+func (this *FieldMask) StableEqualVT(that *FieldMask) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Paths) != len(that.Paths) {
+		return false
+	}
+	for i, vx := range this.Paths {
+		vy := that.Paths[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return true
+}
+
 func (this *FieldMask) EqualVT(that *FieldMask) bool {
 	if this == that {
 		return true

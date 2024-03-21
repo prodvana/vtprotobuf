@@ -10,3 +10,8 @@ option go_package = "github.com/planetscale/vtprotobuf/vtproto";
 extend google.protobuf.MessageOptions {
   optional bool mempool = 64101;
 }
+
+extend google.protobuf.FieldOptions {
+  // Should this field be excluded from the generated StableEqualVT method?
+  optional bool unstable_for_equal = 64101;
+}

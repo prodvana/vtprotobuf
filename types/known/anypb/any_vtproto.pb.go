@@ -36,6 +36,21 @@ func (m *Any) CloneVT() *Any {
 	return r
 }
 
+func (this *Any) StableEqualVT(that *Any) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.TypeUrl != that.TypeUrl {
+		return false
+	}
+	if string(this.Value) != string(that.Value) {
+		return false
+	}
+	return true
+}
+
 func (this *Any) EqualVT(that *Any) bool {
 	if this == that {
 		return true

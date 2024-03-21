@@ -221,6 +221,31 @@ func (m *JspbEncodingConfig) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *FailureSet) StableEqualVT(that *FailureSet) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.Failure) != len(that.Failure) {
+		return false
+	}
+	for i, vx := range this.Failure {
+		vy := that.Failure[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *FailureSet) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*FailureSet)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *FailureSet) EqualVT(that *FailureSet) bool {
 	if this == that {
 		return true
@@ -246,6 +271,117 @@ func (this *FailureSet) EqualMessageVT(thatMsg proto.Message) bool {
 	}
 	return this.EqualVT(that)
 }
+func (this *ConformanceRequest) StableEqualVT(that *ConformanceRequest) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Payload == nil && that.Payload != nil {
+		return false
+	} else if this.Payload != nil {
+		if that.Payload == nil {
+			return false
+		}
+		if !this.Payload.(interface {
+			StableEqualVT(isConformanceRequest_Payload) bool
+		}).StableEqualVT(that.Payload) {
+			return false
+		}
+	}
+	if this.RequestedOutputFormat != that.RequestedOutputFormat {
+		return false
+	}
+	if this.MessageType != that.MessageType {
+		return false
+	}
+	if this.TestCategory != that.TestCategory {
+		return false
+	}
+	if !this.JspbEncodingOptions.StableEqualVT(that.JspbEncodingOptions) {
+		return false
+	}
+	if this.PrintUnknownFields != that.PrintUnknownFields {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *ConformanceRequest) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*ConformanceRequest)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *ConformanceRequest_ProtobufPayload) StableEqualVT(thatIface isConformanceRequest_Payload) bool {
+	that, ok := thatIface.(*ConformanceRequest_ProtobufPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if string(this.ProtobufPayload) != string(that.ProtobufPayload) {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceRequest_JsonPayload) StableEqualVT(thatIface isConformanceRequest_Payload) bool {
+	that, ok := thatIface.(*ConformanceRequest_JsonPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.JsonPayload != that.JsonPayload {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceRequest_JspbPayload) StableEqualVT(thatIface isConformanceRequest_Payload) bool {
+	that, ok := thatIface.(*ConformanceRequest_JspbPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.JspbPayload != that.JspbPayload {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceRequest_TextPayload) StableEqualVT(thatIface isConformanceRequest_Payload) bool {
+	that, ok := thatIface.(*ConformanceRequest_TextPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.TextPayload != that.TextPayload {
+		return false
+	}
+	return true
+}
+
 func (this *ConformanceRequest) EqualVT(that *ConformanceRequest) bool {
 	if this == that {
 		return true
@@ -342,6 +478,170 @@ func (this *ConformanceRequest_JspbPayload) EqualVT(thatIface isConformanceReque
 
 func (this *ConformanceRequest_TextPayload) EqualVT(thatIface isConformanceRequest_Payload) bool {
 	that, ok := thatIface.(*ConformanceRequest_TextPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.TextPayload != that.TextPayload {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse) StableEqualVT(that *ConformanceResponse) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Result == nil && that.Result != nil {
+		return false
+	} else if this.Result != nil {
+		if that.Result == nil {
+			return false
+		}
+		if !this.Result.(interface {
+			StableEqualVT(isConformanceResponse_Result) bool
+		}).StableEqualVT(that.Result) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *ConformanceResponse) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*ConformanceResponse)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *ConformanceResponse_ParseError) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_ParseError)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.ParseError != that.ParseError {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_RuntimeError) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_RuntimeError)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.RuntimeError != that.RuntimeError {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_ProtobufPayload) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_ProtobufPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if string(this.ProtobufPayload) != string(that.ProtobufPayload) {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_JsonPayload) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_JsonPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.JsonPayload != that.JsonPayload {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_Skipped) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_Skipped)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.Skipped != that.Skipped {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_SerializeError) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_SerializeError)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.SerializeError != that.SerializeError {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_JspbPayload) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_JspbPayload)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if this.JspbPayload != that.JspbPayload {
+		return false
+	}
+	return true
+}
+
+func (this *ConformanceResponse_TextPayload) StableEqualVT(thatIface isConformanceResponse_Result) bool {
+	that, ok := thatIface.(*ConformanceResponse_TextPayload)
 	if !ok {
 		return false
 	}
@@ -521,6 +821,25 @@ func (this *ConformanceResponse_TextPayload) EqualVT(thatIface isConformanceResp
 	return true
 }
 
+func (this *JspbEncodingConfig) StableEqualVT(that *JspbEncodingConfig) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.UseJspbArrayAnyFormat != that.UseJspbArrayAnyFormat {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *JspbEncodingConfig) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*JspbEncodingConfig)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *JspbEncodingConfig) EqualVT(that *JspbEncodingConfig) bool {
 	if this == that {
 		return true

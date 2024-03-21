@@ -31,6 +31,21 @@ func (m *Timestamp) CloneVT() *Timestamp {
 	return r
 }
 
+func (this *Timestamp) StableEqualVT(that *Timestamp) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Seconds != that.Seconds {
+		return false
+	}
+	if this.Nanos != that.Nanos {
+		return false
+	}
+	return true
+}
+
 func (this *Timestamp) EqualVT(that *Timestamp) bool {
 	if this == that {
 		return true

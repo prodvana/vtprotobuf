@@ -29,6 +29,15 @@ func (m *Empty) CloneVT() *Empty {
 	return r
 }
 
+func (this *Empty) StableEqualVT(that *Empty) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return true
+}
+
 func (this *Empty) EqualVT(that *Empty) bool {
 	if this == that {
 		return true

@@ -19,7 +19,7 @@ tar zxf pb.tar.gz
 
 cd protobuf-${PROTOBUF_VERSION}
 ./configure
-make
+make -j $(nproc)
 make -C conformance
 
 echo "Dowloaded and compiled protobuf $PROTOBUF_VERSION to $PROTOBUF_PATH"

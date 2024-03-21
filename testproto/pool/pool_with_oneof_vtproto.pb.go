@@ -152,6 +152,206 @@ func (m *OneofTest_Test4) CloneVT() isOneofTest_Test {
 	return r
 }
 
+func (this *OneofTest_Test1) StableEqualVT(that *OneofTest_Test1) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.A != that.A {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OneofTest_Test1) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OneofTest_Test1)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *OneofTest_Test2) StableEqualVT(that *OneofTest_Test2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if len(this.B) != len(that.B) {
+		return false
+	}
+	for i, vx := range this.B {
+		vy := that.B[i]
+		if vx != vy {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OneofTest_Test2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OneofTest_Test2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *OneofTest_Test3_Element2) StableEqualVT(that *OneofTest_Test3_Element2) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.D != that.D {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OneofTest_Test3_Element2) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OneofTest_Test3_Element2)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *OneofTest_Test3) StableEqualVT(that *OneofTest_Test3) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if !this.C.StableEqualVT(that.C) {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OneofTest_Test3) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OneofTest_Test3)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *OneofTest) StableEqualVT(that *OneofTest) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	if this.Test == nil && that.Test != nil {
+		return false
+	} else if this.Test != nil {
+		if that.Test == nil {
+			return false
+		}
+		if !this.Test.(interface{ StableEqualVT(isOneofTest_Test) bool }).StableEqualVT(that.Test) {
+			return false
+		}
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *OneofTest) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*OneofTest)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
+func (this *OneofTest_Test1_) StableEqualVT(thatIface isOneofTest_Test) bool {
+	that, ok := thatIface.(*OneofTest_Test1_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Test1, that.Test1; p != q {
+		if p == nil {
+			p = &OneofTest_Test1{}
+		}
+		if q == nil {
+			q = &OneofTest_Test1{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *OneofTest_Test2_) StableEqualVT(thatIface isOneofTest_Test) bool {
+	that, ok := thatIface.(*OneofTest_Test2_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Test2, that.Test2; p != q {
+		if p == nil {
+			p = &OneofTest_Test2{}
+		}
+		if q == nil {
+			q = &OneofTest_Test2{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *OneofTest_Test3_) StableEqualVT(thatIface isOneofTest_Test) bool {
+	that, ok := thatIface.(*OneofTest_Test3_)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if p, q := this.Test3, that.Test3; p != q {
+		if p == nil {
+			p = &OneofTest_Test3{}
+		}
+		if q == nil {
+			q = &OneofTest_Test3{}
+		}
+		if !p.StableEqualVT(q) {
+			return false
+		}
+	}
+	return true
+}
+
+func (this *OneofTest_Test4) StableEqualVT(thatIface isOneofTest_Test) bool {
+	that, ok := thatIface.(*OneofTest_Test4)
+	if !ok {
+		return false
+	}
+	if this == that {
+		return true
+	}
+	if this == nil && that != nil || this != nil && that == nil {
+		return false
+	}
+	if string(this.Test4) != string(that.Test4) {
+		return false
+	}
+	return true
+}
+
 func (this *OneofTest_Test1) EqualVT(that *OneofTest_Test1) bool {
 	if this == that {
 		return true

@@ -52,6 +52,22 @@ func (m *TestMessageResponse) CloneMessageVT() proto.Message {
 	return m.CloneVT()
 }
 
+func (this *TestMessageRequest) StableEqualVT(that *TestMessageRequest) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *TestMessageRequest) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*TestMessageRequest)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
+}
 func (this *TestMessageRequest) EqualVT(that *TestMessageRequest) bool {
 	if this == that {
 		return true
@@ -67,6 +83,22 @@ func (this *TestMessageRequest) EqualMessageVT(thatMsg proto.Message) bool {
 		return false
 	}
 	return this.EqualVT(that)
+}
+func (this *TestMessageResponse) StableEqualVT(that *TestMessageResponse) bool {
+	if this == that {
+		return true
+	} else if this == nil || that == nil {
+		return false
+	}
+	return string(this.unknownFields) == string(that.unknownFields)
+}
+
+func (this *TestMessageResponse) StableEqualMessageVT(thatMsg proto.Message) bool {
+	that, ok := thatMsg.(*TestMessageResponse)
+	if !ok {
+		return false
+	}
+	return this.StableEqualVT(that)
 }
 func (this *TestMessageResponse) EqualVT(that *TestMessageResponse) bool {
 	if this == that {
